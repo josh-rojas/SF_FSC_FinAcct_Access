@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Is_Employee_Account__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Flag to indicate if this user is an employee and their financial accounts should be subject to special access controls</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Check this box if the user is an employee whose financial accounts should be subject to special access controls</inlineHelpText>
+    <label>Is Employee Account</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Checkbox</type>
+</CustomField>

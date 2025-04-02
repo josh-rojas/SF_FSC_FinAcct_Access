@@ -1,0 +1,15 @@
+{
+  "orgName": "FinancialServicesCloudApp",
+  "edition": "Developer",
+  "features": ["FinancialServicesCloud"],
+  "settings": {
+    "lightningExperienceSettings": {
+      "enableS1DesktopEnabled": true
+    },
+    "securitySettings": {
+      "passwordPolicies": {
+        "enableSetPasswordInApi": true
+      }
+    }
+  }
+}

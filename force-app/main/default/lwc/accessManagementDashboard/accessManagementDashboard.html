@@ -1,0 +1,144 @@
+<template>
+    <lightning-card title="Financial Account Access Management" icon-name="standard:financial_account">
+        <div class="slds-p-around_medium">
+            <div class="slds-grid slds-grid_vertical-align-center slds-m-bottom_medium">
+                <div class="slds-col">
+                    <p class="slds-text-title">Your permission level: <span class="slds-text-heading_small slds-text-color_success">{currentPermissionLevel}</span></p>
+                </div>
+                <div class="slds-col slds-text-align_right">
+                    <lightning-button-group>
+                        <template if:true={isAdmin}>
+                            <lightning-button
+                                label="Manage Permission Sets"
+                                icon-name="utility:settings"
+                                onclick={handleOpenPermissionManager}
+                            ></lightning-button>
+                        </template>
+                        <lightning-button
+                            label="Refresh Data"
+                            icon-name="utility:refresh"
+                            onclick={handleRefresh}
+                        ></lightning-button>
+                    </lightning-button-group>
+                </div>
+            </div>
+            
+            <lightning-tabset variant="scoped" active-tab-value={activeTab}>
+                <lightning-tab label="Users" value="users" onactive={handleTabChange}>
+                    <template if:true={isLoading}>
+                        <lightning-spinner alternative-text="Loading users..." size="medium"></lightning-spinner>
+                    </template>
+                    
+                    <template if:false={isLoading}>
+                        <template if:true={noUsers}>
+                            <div class="slds-text-align_center slds-p-around_medium">
+                                <p>No users found. Please check your permissions or try refreshing.</p>
+                            </div>
+                        </template>
+                        
+                        <template if:false={noUsers}>
+                            <!-- Employee Users Section -->
+                            <div class="slds-m-bottom_medium">
+                                <div class="slds-text-heading_medium slds-m-bottom_small">
+                                    Employee Users ({employeeUsers.length})
+                                </div>
+                                
+                                <div class="slds-grid slds-gutters slds-wrap">
+                                    <template for:each={employeeUsers} for:item="user">
+                                        <div key={user.id} class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-3 slds-p-around_xx-small">
+                                            <c-user-access-card
+                                                user={user}
+                                                permission-level={currentPermissionLevel}
+                                                onview={handleViewUser}
+                                            ></c-user-access-card>
+                                        </div>
+                                    </template>
+                                </div>
+                            </div>
+                            
+                            <!-- Non-Employee Users Section -->
+                            <div>
+                                <div class="slds-text-heading_medium slds-m-bottom_small">
+                                    Non-Employee Users ({nonEmployeeUsers.length})
+                                </div>
+                                
+                                <div class="slds-grid slds-gutters slds-wrap">
+                                    <template for:each={nonEmployeeUsers} for:item="user">
+                                        <div key={user.id} class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-3 slds-p-around_xx-small">
+                                            <c-user-access-card
+                                                user={user}
+                                                permission-level={currentPermissionLevel}
+                                                onview={handleViewUser}
+                                            ></c-user-access-card>
+                                        </div>
+                                    </template>
+                                </div>
+                            </div>
+                        </template>
+                    </template>
+                </lightning-tab>
+                
+                <lightning-tab label="Financial Accounts" value="accounts" onactive={handleTabChange}>
+                    <template if:true={isLoading}>
+                        <lightning-spinner alternative-text="Loading accounts..." size="medium"></lightning-spinner>
+                    </template>
+                    
+                    <template if:false={isLoading}>
+                        <template if:true={noAccounts}>
+                            <div class="slds-text-align_center slds-p-around_medium">
+                                <p>No financial accounts found. Please check your permissions or try refreshing.</p>
+                            </div>
+                        </template>
+                        
+                        <template if:false={noAccounts}>
+                            <!-- Employee Accounts Section -->
+                            <div class="slds-m-bottom_medium">
+                                <div class="slds-text-heading_medium slds-m-bottom_small">
+                                    Employee Financial Accounts ({employeeAccounts.length})
+                                </div>
+                                
+                                <lightning-datatable
+                                    key-field="Id"
+                                    data={employeeAccounts}
+                                    columns={accountColumns}
+                                    hide-checkbox-column
+                                    onrowaction={handleAccountRowAction}
+                                ></lightning-datatable>
+                            </div>
+                            
+                            <!-- Non-Employee Accounts Section -->
+                            <div>
+                                <div class="slds-text-heading_medium slds-m-bottom_small">
+                                    Non-Employee Financial Accounts ({nonEmployeeAccounts.length})
+                                </div>
+                                
+                                <lightning-datatable
+                                    key-field="Id"
+                                    data={nonEmployeeAccounts}
+                                    columns={accountColumns}
+                                    hide-checkbox-column
+                                    onrowaction={handleAccountRowAction}
+                                ></lightning-datatable>
+                            </div>
+                        </template>
+                    </template>
+                </lightning-tab>
+            </lightning-tabset>
+        </div>
+    </lightning-card>
+    
+    <!-- Permission Set Manager Modal -->
+    <template if:true={showPermissionManager}>
+        <c-permission-set-manager
+            onclose={handleClosePermissionManager}
+        ></c-permission-set-manager>
+    </template>
+    
+    <!-- Access Override Modal -->
+    <template if:true={showAccessOverrideModal}>
+        <c-access-override-modal
+            account={selectedAccount}
+            onclose={handleCloseAccessOverrideModal}
+        ></c-access-override-modal>
+    </template>
+</template>

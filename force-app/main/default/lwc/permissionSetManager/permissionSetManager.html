@@ -1,0 +1,151 @@
+<template>
+    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+            <header class="slds-modal__header">
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={handleClose}>
+                    <lightning-icon icon-name="utility:close" size="small" alternative-text="Close" variant="inverse"></lightning-icon>
+                    <span class="slds-assistive-text">Close</span>
+                </button>
+                <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Permission Set Manager</h2>
+            </header>
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                <template if:true={isLoading}>
+                    <lightning-spinner alternative-text="Loading..." size="medium"></lightning-spinner>
+                </template>
+                
+                <div class="slds-grid slds-grid_vertical-align-center slds-m-bottom_medium">
+                    <div class="slds-col">
+                        <h3 class="slds-text-heading_small">Manage User Permission Levels</h3>
+                    </div>
+                    <div class="slds-col slds-text-align_right">
+                        <lightning-button-group>
+                            <lightning-button
+                                label="Assign Permission"
+                                icon-name="utility:add"
+                                onclick={handleOpenAssignModal}
+                            ></lightning-button>
+                            <lightning-button
+                                label="Refresh"
+                                icon-name="utility:refresh"
+                                onclick={handleRefresh}
+                            ></lightning-button>
+                        </lightning-button-group>
+                    </div>
+                </div>
+                
+                <lightning-tabset>
+                    <!-- Admin Users Tab -->
+                    <lightning-tab label="Admin Level Users">
+                        <template if:true={adminUsers.length}>
+                            <div class="slds-p-around_medium">
+                                <lightning-datatable
+                                    key-field="Id"
+                                    data={adminUsers}
+                                    columns={adminColumns}
+                                    hide-checkbox-column
+                                ></lightning-datatable>
+                            </div>
+                        </template>
+                        <template if:false={adminUsers.length}>
+                            <div class="slds-text-align_center slds-p-around_medium">
+                                <p>No admin level users found.</p>
+                            </div>
+                        </template>
+                    </lightning-tab>
+                    
+                    <!-- Mid-Level Users Tab -->
+                    <lightning-tab label="Mid Level Users">
+                        <template if:true={midLevelUsers.length}>
+                            <div class="slds-p-around_medium">
+                                <lightning-datatable
+                                    key-field="Id"
+                                    data={midLevelUsers}
+                                    columns={midLevelColumns}
+                                    hide-checkbox-column
+                                ></lightning-datatable>
+                            </div>
+                        </template>
+                        <template if:false={midLevelUsers.length}>
+                            <div class="slds-text-align_center slds-p-around_medium">
+                                <p>No mid level users found.</p>
+                            </div>
+                        </template>
+                    </lightning-tab>
+                    
+                    <!-- Base Level Users Tab -->
+                    <lightning-tab label="Base Level Users">
+                        <template if:true={baseLevelUsers.length}>
+                            <div class="slds-p-around_medium">
+                                <lightning-datatable
+                                    key-field="Id"
+                                    data={baseLevelUsers}
+                                    columns={baseLevelColumns}
+                                    hide-checkbox-column
+                                ></lightning-datatable>
+                            </div>
+                        </template>
+                        <template if:false={baseLevelUsers.length}>
+                            <div class="slds-text-align_center slds-p-around_medium">
+                                <p>No base level users found.</p>
+                            </div>
+                        </template>
+                    </lightning-tab>
+                </lightning-tabset>
+            </div>
+            <footer class="slds-modal__footer">
+                <button class="slds-button slds-button_neutral" onclick={handleClose}>Close</button>
+            </footer>
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+    
+    <!-- Assign Permission Modal -->
+    <template if:true={showAssignModal}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-02" aria-modal="true" aria-describedby="modal-content-id-2" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={handleCloseAssignModal}>
+                        <lightning-icon icon-name="utility:close" size="small" alternative-text="Close" variant="inverse"></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 id="modal-heading-02" class="slds-text-heading_medium slds-hyphenate">Assign Permission Level</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-2">
+                    <div class="slds-form slds-form_stacked">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="user-select">User</label>
+                            <div class="slds-form-element__control">
+                                <div class="slds-select_container">
+                                    <select class="slds-select" id="user-select" onchange={handleUserSelection}>
+                                        <option value="">Select a user...</option>
+                                        <template for:each={usersForSelection} for:item="user">
+                                            <option key={user.value} value={user.value}>{user.label}</option>
+                                        </template>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="level-select">Permission Level</label>
+                            <div class="slds-form-element__control">
+                                <div class="slds-select_container">
+                                    <select class="slds-select" id="level-select" onchange={handleLevelSelection}>
+                                        <option value="">Select a permission level...</option>
+                                        <template for:each={levelOptions} for:item="level">
+                                            <option key={level.value} value={level.value}>{level.label}</option>
+                                        </template>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" onclick={handleCloseAssignModal}>Cancel</button>
+                    <button class="slds-button slds-button_brand" onclick={handleAssignPermission}>Assign</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>
