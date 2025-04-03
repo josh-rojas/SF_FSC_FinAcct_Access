@@ -1,0 +1,7 @@
+**/jsconfig.json
+
+**/.eslintrc.json
+
+# Documentation
+docs/
+public/

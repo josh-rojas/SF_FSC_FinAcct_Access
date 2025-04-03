@@ -1,0 +1,9 @@
+--devhub --websocket localhost:2702[sfdx-hardis] 🦙 Please select an org Look up in VsCode ⬆️
+[sfdx-hardis] Selection done but hidden in log because it contains sensitive information
+[sfdx-hardis][command] sf config set target-dev-hub=berrystreetblues@gmail.com --json
+[sfdx-hardis][WARNING] stderr:  ›   Warning: @salesforce/cli update available from 2.81.9 to 2.82.6.
+
+[sfdx-hardis] Org berrystreetblues@gmail.com - https://joshrojas-dev-ed.my.salesforce.com
+[sfdx-hardis][command] sf org display --target-org berrystreetblues@gmail.com --json
+[sfdx-hardis][WARNING] stderr:  ›   Warning: @salesforce/cli update available from 2.81.9 to 2.82.6.
+
