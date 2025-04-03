@@ -1,0 +1,23 @@
+# macOS system files
+.DS_Store
+**/.DS_Store
+
+# Hardis report logs
+hardis-report/commands/*.log
+
+# Documentation
+docs/
+public/
+
+# Node modules
+node_modules/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Salesforce DX
+.sf/
+.sfdx/ 
