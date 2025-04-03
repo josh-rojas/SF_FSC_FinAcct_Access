@@ -5,7 +5,7 @@
       "default": true
     }
   ],
-  "name": "financial-services-cloud-app",
+  "name": "financial-account-access-manager",
   "namespace": "",
   "sfdcLoginUrl": "https://login.salesforce.com",
   "sourceApiVersion": "56.0"

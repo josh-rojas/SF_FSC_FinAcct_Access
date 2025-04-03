@@ -10,5 +10,34 @@
         "editor.formatOnPaste": true,
         "editor.detectIndentation": false,
         "editor.tabSize": 2
-    }
+    },
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true,
+        "**/node_modules": true,
+        "**/.sfdx": true,
+        "**/.sf": true,
+        "**/hardis-report": true,
+        "**/package-lock.json": true
+    },
+    "explorer.excludeGitIgnore": true,
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/node_modules/**": true,
+        "**/.hg/store/**": true,
+        "**/.sfdx/**": true,
+        "**/.sf/**": true,
+        "**/hardis-report/**": true
+    },
+    "explorer.compactFolders": true,
+    "explorer.sortOrder": "filesFirst"
 }

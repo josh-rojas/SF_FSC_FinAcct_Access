@@ -1,10 +1,6 @@
-# Salesforce Financial Services Cloud - Financial Account Access
+# Financial Account Access Manager
 
-This Salesforce DX project implements a solution for managing financial account access in Financial Services Cloud (FSC).
-
-## Project Overview
-
-This project provides functionality for managing and controlling access to financial accounts within Salesforce Financial Services Cloud. It includes Lightning Web Components (LWC), Apex classes, and custom objects to handle account access permissions and overrides.
+This Salesforce DX project implements a solution for managing and controlling financial account access permissions and overrides. The application provides a comprehensive interface for administrators to manage user access to financial accounts, including permission sets, access overrides, and access management dashboards.
 
 ## Project Structure
 
@@ -12,47 +8,50 @@ This project provides functionality for managing and controlling access to finan
 force-app/
 ├── main/
 │   └── default/
-│       ├── classes/           # Apex classes
-│       ├── lwc/              # Lightning Web Components
-│       ├── objects/          # Custom objects
-│       ├── permissions/      # Permission sets
-│       ├── staticresources/  # Static resources (images, etc.)
-│       └── triggers/         # Apex triggers
+│       ├── applications/     # Custom app configuration
+│       ├── classes/         # Apex classes
+│       ├── lwc/            # Lightning Web Components
+│       ├── objects/        # Custom objects
+│       ├── permissionsets/ # Permission sets
+│       └── triggers/       # Apex triggers
 ```
 
 ## Key Components
 
 - **Lightning Web Components**
-  - `financialAccountAccess` - Main component for managing account access
-  - `accessOverrideModal` - Modal for overriding access permissions
+  - `accessManagementDashboard`: Main dashboard for managing account access
+  - `accessOverrideModal`: Modal for managing access overrides
+  - `permissionSetManager`: Component for managing permission sets
+  - `userAccessCard`: Component for displaying user access information
 
 - **Apex Classes**
-  - `FinancialAccountAccessController` - Main controller for account access logic
-  - `AccessOverrideService` - Service for handling access override operations
-  - `EmployeeAccountFlagService` - Service for managing employee account flags
+  - `FinancialAccountAccessController`: Main controller for account access operations
+  - `FinancialAccountAccessTriggerHandler`: Handles trigger logic for account access
 
 - **Custom Objects**
-  - `Financial_Account_Access__c` - Stores access permissions
-  - `Access_Override__c` - Records access override requests
+  - `Financial_Account_Access__c`: Stores account access records
+  - `Access_Override__c`: Stores access override records
+
+- **Permission Sets**
+  - `Financial_Account_Access_Admin`: Administrative access
+  - `Financial_Account_Access_User`: Standard user access
 
 ## Setup Instructions
 
-1. Clone this repository
+1. Clone the repository
 2. Install Salesforce CLI
-3. Authenticate with your org:
-   ```bash
-   sfdx auth:web:login
-   ```
-4. Deploy to your org:
+3. Authenticate with your org
+4. Deploy the components:
    ```bash
    sfdx force:source:deploy -p force-app/main/default
    ```
 
-## Development
+## Development Guidelines
 
-- Use `sfdx force:org:create` to create a scratch org
-- Use `sfdx force:source:push` to push changes
-- Use `sfdx force:source:pull` to pull changes
+1. Follow Salesforce Lightning Design System (SLDS) guidelines
+2. Use Apex best practices for triggers and controllers
+3. Implement proper error handling and logging
+4. Write unit tests for all Apex classes
 
 ## Testing
 

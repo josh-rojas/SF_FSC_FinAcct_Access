@@ -4,16 +4,16 @@
         <headerColor>#0070D2</headerColor>
         <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
     </brand>
-    <description>Financial Services Cloud application for managing account access</description>
+    <description>Application for managing and controlling financial account access permissions and overrides</description>
     <formFactors>Small</formFactors>
     <formFactors>Large</formFactors>
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
-    <label>Financial Services Cloud</label>
+    <label>Financial Account Access Manager</label>
     <navType>Standard</navType>
     <tabs>
         <name>Financial_Account_Access</name>
     </tabs>
     <uiType>Lightning</uiType>
-    <utilityBar>Financial_Services_Cloud_UtilityBar</utilityBar>
+    <utilityBar>Financial_Account_Access_UtilityBar</utilityBar>
 </CustomApplication>
