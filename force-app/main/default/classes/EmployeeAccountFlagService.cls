@@ -64,6 +64,7 @@ public with sharing class EmployeeAccountFlagService {
      * @param isEmployee Boolean value to set for the employee flag
      * @return List of users that were updated
      */
+    @AuraEnabled(cacheable=false)
     public static List<User> setEmployeeFlag(List<Id> userIds, Boolean isEmployee) {
         if (userIds == null || userIds.isEmpty()) {
             return new List<User>();

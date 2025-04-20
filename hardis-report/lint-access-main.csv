@@ -1,0 +1,9 @@
+type,element,severity,severityIcon
+apexClass,PermissionUtilityTest,warning,⚠️
+apexClass,PermissionSetManager,warning,⚠️
+apexClass,FinancialAccountSharingServiceTest,warning,⚠️
+apexClass,FinancialAccountSharingService,warning,⚠️
+apexClass,FinancialAccountAccessControllerTest,warning,⚠️
+apexClass,EmployeeAccountFlagServiceTest,warning,⚠️
+apexClass,EmployeeAccountFlagService,warning,⚠️
+apexClass,AccessOverrideServiceTest,warning,⚠️

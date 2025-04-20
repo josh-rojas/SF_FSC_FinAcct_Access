@@ -62,7 +62,7 @@ public with sharing class PermissionUtility {
             return permissionLevel;
         } catch (Exception e) {
             System.debug('Error determining user permission level: ' + e.getMessage());
-            LoggingService.logError('PermissionUtility.getUserPermissionLevel', e.getMessage(), e.getStackTraceString());
+            new LoggingService().logError('PermissionUtility.getUserPermissionLevel', e.getMessage(), e.getStackTraceString());
             return permissionLevel; // Return default level if there's an error
         }
     }
@@ -147,7 +147,7 @@ public with sharing class PermissionUtility {
      * This is a placeholder for a more complete logging service implementation
      */
     private class LoggingService {
-        public static void logError(String className, String message, String stackTrace) {
+        public void logError(String className, String message, String stackTrace) {
             System.debug('Error in ' + className + ': ' + message + '\n' + stackTrace);
             // In a full implementation, this would write to a custom object or external system
         }

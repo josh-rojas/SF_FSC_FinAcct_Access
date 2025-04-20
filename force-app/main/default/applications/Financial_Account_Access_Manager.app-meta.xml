@@ -11,9 +11,6 @@
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
     <label>Financial Account Access Manager</label>
     <navType>Standard</navType>
-    <tabs>
-        <name>Financial_Account_Access</name>
-    </tabs>
+    <tabs>Financial_Account_Access</tabs>
     <uiType>Lightning</uiType>
-    <utilityBar>Financial_Account_Access_UtilityBar</utilityBar>
 </CustomApplication>

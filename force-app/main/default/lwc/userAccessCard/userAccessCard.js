@@ -46,6 +46,10 @@ export default class UserAccessCard extends LightningElement {
         return this.permissionLevel === 'Admin_Level';
     }
     
+    get toggleEmployeeLabel() {
+        return this.isEmployee ? 'Remove Employee Flag' : 'Set as Employee';
+    }
+    
     handleViewUser() {
         this.dispatchEvent(new CustomEvent('view', {
             detail: this.user.id

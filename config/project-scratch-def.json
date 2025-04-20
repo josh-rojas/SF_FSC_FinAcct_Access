@@ -1,15 +1,13 @@
 {
-  "orgName": "FinancialServicesCloudApp",
+  "orgName": "Financial Account Access Manager",
   "edition": "Developer",
-  "features": ["FinancialServicesCloud"],
+  "features": [
+    "FinancialServicesUser:5",
+    "ContactsToMultipleAccounts"
+  ],
   "settings": {
     "lightningExperienceSettings": {
       "enableS1DesktopEnabled": true
-    },
-    "securitySettings": {
-      "passwordPolicies": {
-        "enableSetPasswordInApi": true
-      }
     }
   }
 }

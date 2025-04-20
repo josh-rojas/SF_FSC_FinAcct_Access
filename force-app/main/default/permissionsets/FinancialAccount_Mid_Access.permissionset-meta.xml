@@ -3,6 +3,18 @@
     <description>Mid level access for financial accounts - selective access to employee-owned accounts based on management relationship or role hierarchy</description>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Financial Account Mid Access</label>
+    <classAccesses>
+        <apexClass>AccessOverrideService</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>FinancialAccountAccessController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PermissionUtility</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <objectPermissions>
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>

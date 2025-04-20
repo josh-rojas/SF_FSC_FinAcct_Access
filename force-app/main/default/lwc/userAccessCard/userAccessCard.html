@@ -22,7 +22,7 @@
                         <template if:true={canEditEmployeeFlag}>
                             <lightning-menu-item
                                 value="toggle"
-                                label={isEmployee ? "Remove Employee Flag" : "Set as Employee"}
+                                label={toggleEmployeeLabel}
                                 onclick={handleToggleEmployeeFlag}
                             ></lightning-menu-item>
                         </template>
